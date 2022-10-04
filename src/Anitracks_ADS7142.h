@@ -28,7 +28,7 @@ public:
   bool write(uint8_t reg, uint8_t val);
   bool write(uint8_t val);
   bool read(uint8_t reg, uint8_t *val);
-  bool read1Conversion(uint16_t *val);
+  bool readFirst(uint16_t *val);
   bool read2Ch(uint16_t *ch0, uint16_t *ch1);
 
 private:

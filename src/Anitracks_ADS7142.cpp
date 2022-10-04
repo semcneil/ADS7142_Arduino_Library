@@ -58,12 +58,13 @@ bool ADS7142::read(uint8_t reg, uint8_t *val) {
   return(_wire.endTransmission() == 0);
 }
 
-bool ADS7142::read1Conversion(uint16_t *val) {
+// Reads AIN0
+bool ADS7142::readFirst(uint16_t *ch0) {
   _wire.requestFrom(_i2c_address, 2);
   if(!_wire.available())
     return(false);  // request failed
-  *val = _wire.read() << 8;  // read upper byte
-  *val += _wire.read();      // read lower byte
+  *ch0 = _wire.read() << 8;  // read upper byte
+  *ch0 += _wire.read();      // read lower byte
   return(true);
 }
 
