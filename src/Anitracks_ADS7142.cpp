@@ -13,25 +13,11 @@ ADS7142::~ADS7142() {
 
 bool ADS7142::begin() {
   _wire.begin();
-  // Send General Call with I2C address configure
-  //_wire.beginTransmission(0x00);
-  //_wire.write(0x00);
-  //_wire.write(0x04);
-  //_wire.endTransmission();
-  //delay(1000);
   uint8_t regVal;
-  if(read(OPMODE_I2CMODE_STATUS, &regVal)) {
-    Serial.print("OPMODE_I2CMODE_STATUS = 0x");
-    Serial.println(regVal, HEX);
-  } else {
-    Serial.println("Read OPMODE STATUS failed");
+  if(!read(OPMODE_I2CMODE_STATUS, &regVal)) {
     return(false);
   }
-  if(read(AUTO_SEQ_CHEN, &regVal)) {
-    Serial.print("AUTO_SEQ_CHEN = 0x");
-    Serial.println(regVal, HEX);
-  } else {
-    Serial.println("Read AUTO_SEQ_CHEN failed");
+  if(!read(AUTO_SEQ_CHEN, &regVal)) {
     return(false);
   }
   return(true);
@@ -76,13 +62,14 @@ bool ADS7142::read1Conversion(uint16_t *val) {
   _wire.requestFrom(_i2c_address, 2);
   if(!_wire.available())
     return(false);  // request failed
-  *val = _wire.read() << 8;
-  *val += _wire.read();
+  *val = _wire.read() << 8;  // read upper byte
+  *val += _wire.read();      // read lower byte
   return(true);
 }
 
 bool ADS7142::read2CH(uint16_t *ch0, uint16_t *ch1) {
   uint8_t val;
+  // select both channels for auto sequencing
   if(!write(AUTO_SEQ_CHEN, 0x03)) {
       return(false);
   }
@@ -99,12 +86,13 @@ bool ADS7142::read2CH(uint16_t *ch0, uint16_t *ch1) {
     return(false);  // request failed
   // need to check that 4 bytes came back
   // read ch0
-  *ch0 = _wire.read() << 8;
-  *ch0 += _wire.read();
+  *ch0 = _wire.read() << 8; // read upper byte
+  *ch0 += _wire.read();     // read lower byte
   // read ch1
-  *ch1 = _wire.read() << 8;
-  *ch1 += _wire.read();
-  // write SEQ_ABORT bit
+  *ch1 = _wire.read() << 8; // read upper byte
+  *ch1 += _wire.read();     // read lower byte
+  // write SEQ_ABORT bit to stop Manual mode to allow 
+  // it to be changed to another mode
   if(!write(ABORT_SEQUENCE, 0x01)) {
     return(false);
   }
