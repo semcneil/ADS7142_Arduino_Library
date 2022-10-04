@@ -1,4 +1,4 @@
-/* ADS7142_readOne.ino
+/* Example00-ReadingCh0.ino
  * 
  * Demonstrates/tests reading one input on the ADS7142.
  * 

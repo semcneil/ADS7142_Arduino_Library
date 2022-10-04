@@ -1,5 +1,5 @@
 /*
-  This file is a part of the Anitracks_ADS7142 library.
+  This file is a part of the Anitracks ADS7142 library.
   Copyright (c) 2022 Seth McNeill. All rights reserved.
 
   This software can be redistributed or modified under the MIT license

@@ -3,5 +3,5 @@ begin	KEYWORD2
 end	KEYWORD2
 write	KEYWORD2
 read	KEYWORD2
-read1Conversion	KEYWORD2
+readFirst	KEYWORD2
 read2Ch	KEYWORD2

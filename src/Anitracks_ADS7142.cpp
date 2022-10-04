@@ -1,4 +1,14 @@
+/*
+  This file is a part of the Anitracks ADS7142 library.
+  Copyright (c) 2022 Seth McNeill. All rights reserved.
 
+  This software can be redistributed or modified under the MIT license
+  that should have been included with this distribution.
+
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+*/
 
 #include <Anitracks_ADS7142.h>
 
@@ -69,7 +79,6 @@ bool ADS7142::readFirst(uint16_t *ch0) {
 }
 
 bool ADS7142::read2Ch(uint16_t *ch0, uint16_t *ch1) {
-  uint8_t val;
   // select both channels for auto sequencing
   if(!write(AUTO_SEQ_CHEN, 0x03)) {
       return(false);
