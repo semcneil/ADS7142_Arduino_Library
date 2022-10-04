@@ -67,7 +67,7 @@ bool ADS7142::read1Conversion(uint16_t *val) {
   return(true);
 }
 
-bool ADS7142::read2CH(uint16_t *ch0, uint16_t *ch1) {
+bool ADS7142::read2Ch(uint16_t *ch0, uint16_t *ch1) {
   uint8_t val;
   // select both channels for auto sequencing
   if(!write(AUTO_SEQ_CHEN, 0x03)) {

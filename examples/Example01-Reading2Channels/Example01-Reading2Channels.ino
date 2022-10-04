@@ -23,14 +23,14 @@ void setup() {
 }
 
 void loop() {
-  uint16_t adc_in1;
-  uint16_t adc_in2;
+  uint16_t adcIn1;
+  uint16_t adcIn2;
 
-  // adc_in1 and adc_in2 are passed by 
-  // reference (&adc_in1) so that read2CH
+  // adcIn1 and adcIn2 are passed by 
+  // reference (&adcIn1) so that read2CH
   // can modify them. This is one way to
   // return multiple values from a function.
-  if(!adc.read2CH(&adc_in1, &adc_in2)) {
+  if(!adc.read2Ch(&adcIn1, &adcIn2)) {
     Serial.println("adc failed");
   }
   // NOTE: The return values are 16-bit numbers
@@ -38,8 +38,8 @@ void loop() {
   // left by 4-bits. This becomes clearer if you
   // print the output in HEX and note the last
   // digit is always zero.
-  Serial.print(adc_in1);
+  Serial.print(adcIn1);
   Serial.print(", ");
-  Serial.println(adc_in2);
+  Serial.println(adcIn2);
   delay(1000);
 }

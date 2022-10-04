@@ -29,7 +29,7 @@ public:
   bool write(uint8_t val);
   bool read(uint8_t reg, uint8_t *val);
   bool read1Conversion(uint16_t *val);
-  bool read2CH(uint16_t *ch0, uint16_t *ch1);
+  bool read2Ch(uint16_t *ch0, uint16_t *ch1);
 
 private:
   #define DEBUG_MODE 1
