@@ -33,8 +33,8 @@ public:
 
 private:
   #define DEBUG_MODE 1
-  TwoWire& _wire;
   uint8_t _i2c_address;
+  TwoWire& _wire;
 
   // define registers
   #define WKEY                      0x17
